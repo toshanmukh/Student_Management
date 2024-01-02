@@ -16,8 +16,8 @@ create table marks (
     CONSTRAINT FK_student_marks FOREIGN KEY (student_id) REFERENCES student(student_id)
 );
 
-insert into student (student_name, student_class) values ('A', 7);
 insert into student (student_name, student_class) values ('A', 8);
+insert into student (student_name, student_class) values ('A', 7);
 insert into student (student_name, student_class) values ('A', 9);
 insert into student (student_name, student_class) values ('B', 9);
 insert into marks (subject, student_id, marks) values ('Sub1', 1, 10);

@@ -1,5 +1,6 @@
 package com.example.testing.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,6 +26,7 @@ public class StudentMarks {
 
     @ManyToOne
     @JoinColumn(name = "student_id")
+    @JsonBackReference
     private Student student;
 
     public void setSubject(String subject) {
@@ -49,5 +51,9 @@ public class StudentMarks {
 
     public Integer getMarks() {
         return marks;
+    }
+
+    public void setStudentMarks_id(Integer id) {
+        this.marks_id=id;
     }
 }

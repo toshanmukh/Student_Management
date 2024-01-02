@@ -3,20 +3,14 @@ package com.example.testing.demo.entity;
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name="student")
 public class Student {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="student_id")
     private Integer student_id;
 
@@ -27,8 +21,22 @@ public class Student {
     private Integer student_class;
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private Set<StudentMarks> studentMarks = new HashSet<>();
 
+    public Student(int id,String name, int student_class){
+        this.student_id=id;
+        this.student_name=name;
+        this.student_class=student_class;
+    }
+
+    public Student() {
+
+    }
+
+    public void setStudent_id(Integer student_id){
+        this.student_id=student_id;
+    }
     public Integer getStudent_id() {
         return student_id;
     }
